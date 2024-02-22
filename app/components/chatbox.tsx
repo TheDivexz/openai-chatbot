@@ -17,6 +17,8 @@ const Chatbox = () => {
         setTextArray([...textArray,text])
         setWhoSent([...whoSent,true])
         setText('')
+        // TODO
+        // Here is where the OpenAI API should be called and the response retreived
     }
 
     return(
@@ -27,6 +29,7 @@ const Chatbox = () => {
             {/* Get User Input */}
             <Form layout="horizontal" onFinish={handleSubmit}>
                 <Form.Item>
+                    {/* Centers the text field and makes it bigger while keeping it inline */}
                     <Row>
                         <Col flex='auto'></Col>
                         <Col flex="auto">
