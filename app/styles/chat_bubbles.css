@@ -1,0 +1,16 @@
+.user {
+    background-color: #babfc4; /* Equivalent to bg-gray-200 */
+}
+
+.bot {
+    background-color: #87d068; /* Equivalent to bg-gray-200 */
+}
+
+.bubble {
+    padding-left: 1rem; /* Equivalent to px-4 */
+    padding-right: 1rem; /* Equivalent to px-4 */
+    padding-top: .01rem;
+    padding-bottom: .01rem;
+    max-width: 20rem; /* Equivalent to max-w-xs */
+    border-radius: 1.4rem;
+}
