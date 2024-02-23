@@ -28,8 +28,8 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({text,sender}) => {
         (<>
             <Flex justify="flex-start">
                 <Space>
+                    <Avatar style={{ backgroundColor: '#87d068' }}>GPT</Avatar>
                     <div className="bot bubble">
-                        <Avatar style={{ backgroundColor: '#87d068' }}>GPT</Avatar>
                         <p>{text}</p>
                     </div>
                 </Space>
