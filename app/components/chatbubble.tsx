@@ -2,6 +2,7 @@
 
 import { Avatar, Flex, Space } from "antd"
 import '../styles/chat_bubbles.css'
+import { UserOutlined } from '@ant-design/icons';
 
 
 interface ChatBubbleProps {
@@ -20,7 +21,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({text,sender}) => {
                         <div className="user bubble">
                             <p>{text}</p>
                         </div>
-                        <Avatar style={{ backgroundColor: '#1677ff' }}>DT</Avatar>
+                        <Avatar style={{ backgroundColor: '#1677ff' }} icon={<UserOutlined />}/>
                     </Space>
                 </Flex>
             </>) 
