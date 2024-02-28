@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button } from 'antd';
 import Chatbox from './components/chatbox';
+import ImageGenerator from './components/imagegenerator';
 
 const Home = () => (
   <>
-    <Chatbox/>
+    {/* <Chatbox/> */}
+    <ImageGenerator/>
   </>
 );
 

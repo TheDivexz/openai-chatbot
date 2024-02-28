@@ -1,6 +1,6 @@
 "use client"
 
-import { Avatar, Flex, Space } from "antd"
+import { Avatar, Flex, Space, Image } from "antd"
 import '../styles/chat_bubbles.css'
 import { UserOutlined } from '@ant-design/icons';
 
@@ -8,9 +8,11 @@ import { UserOutlined } from '@ant-design/icons';
 interface ChatBubbleProps {
     text: string
     sender: boolean
+    isImage?: boolean
 }
 
-const ChatBubble: React.FC<ChatBubbleProps> = ({text,sender}) => {
+const ChatBubble: React.FC<ChatBubbleProps> = ({text,sender,isImage = false}) => {
+
     return(
     <div>
     {
@@ -31,7 +33,12 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({text,sender}) => {
                 <Space>
                     <Avatar style={{ backgroundColor: '#87d068' }}>GPT</Avatar>
                     <div className="bot bubble">
-                        <p>{text}</p>
+                        {
+                            isImage ?
+                            <Image width={200} src={text}/>
+                            :
+                            <p>{text}</p>
+                        }
                     </div>
                 </Space>
             </Flex>

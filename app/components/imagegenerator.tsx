@@ -5,13 +5,10 @@ import ChatBubble from "./chatbubble"
 import { useState } from "react"
 import React from "react"
 import OpenAI from "openai";
-import { ChatCompletionMessageParam } from "openai/resources/index.mjs"
 import '../styles/chat_box.css'
 
-const Chatbox = () => {
+const ImageGenerator = () => {
 
-    // IN this instance dangerouslyAllowBrowser is acceptable since we are storing the API key in an environment variable
-    // so the value is only visable server side and is inaccessable to the client
     const openai = new OpenAI({ apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY, dangerouslyAllowBrowser: true });
 
     const [textArray,setTextArray] = useState<string[]>([])
@@ -26,21 +23,13 @@ const Chatbox = () => {
         if (currentText === '') {
             return
         }
-        // TODO
         // Here is where the OpenAI API should be called and the response retreived
         try {
-            let chatHistory = textArray.map((value,index) => {
-                return {
-                    role: whoSent[index] ? "user" : "assistant",
-                    content: value
-                }
-            })
-            chatHistory = [{role: "system",content: "You are a helpful assistant."},...chatHistory,{role: "user",content: currentText}]
-            const response = openai.chat.completions.create({
-                model: "gpt-3.5-turbo",
-                messages: chatHistory as ChatCompletionMessageParam[]
-            })
-            setTextArray([...textArray, currentText, (await response).choices[0].message.content ?? ''])
+            const response = await openai.images.generate({ 
+                model: "dall-e-3", 
+                prompt: currentText 
+            });
+            setTextArray([...textArray, currentText, response.data[0].url ?? ''])
             setWhoSent([...whoSent,true, false])
         } catch (error) {
             console.error(error)
@@ -48,12 +37,12 @@ const Chatbox = () => {
         setLoading(false)
     }
 
-    return(
+    return (
         <>
         <Flex vertical>
             {/* Display all the chat bubbles */}
             <div className="max-height">
-                {textArray.map((value,index) => <ChatBubble key={index} text={value} sender={whoSent[index]}/>)}
+                {textArray.map((value,index) => <ChatBubble key={index} text={value} sender={whoSent[index]} isImage/>)}
             </div>
             {/* Get User Input */}
             <div className="pinned-bottom">
@@ -79,4 +68,4 @@ const Chatbox = () => {
     )
 }
 
-export default Chatbox
+export default ImageGenerator;
