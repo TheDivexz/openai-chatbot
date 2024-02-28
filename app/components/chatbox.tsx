@@ -6,6 +6,7 @@ import { useState } from "react"
 import React from "react"
 import OpenAI from "openai";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs"
+import '../styles/chat_box.css'
 
 const Chatbox = () => {
 
@@ -47,22 +48,26 @@ const Chatbox = () => {
         <>
         <Flex vertical>
             {/* Display all the chat bubbles */}
-            {textArray.map((value,index) => <ChatBubble key={index} text={value} sender={whoSent[index]}/>)}
+            <div className="max-height">
+                {textArray.map((value,index) => <ChatBubble key={index} text={value} sender={whoSent[index]}/>)}
+            </div>
             {/* Get User Input */}
-            <Form layout="horizontal" onFinish={handleSubmit}>
-                <Form.Item>
-                    {/* Centers the text field and makes it bigger while keeping it inline */}
-                    <Row>
-                        <Col flex='auto'></Col>
-                        <Col flex="auto">
-                            <Input size='large' value={text} onChange={(event) => setText(event.target.value)}></Input>
-                        </Col>
-                        <Col flex="auto">
-                            <Button size='large' type="primary" htmlType="submit">Submit</Button>
-                        </Col>
-                    </Row>
-                </Form.Item>
-            </Form>
+            <div className="pinned-bottom">
+                <Form layout="horizontal" onFinish={handleSubmit}>
+                    <Form.Item>
+                        {/* Centers the text field and makes it bigger while keeping it inline */}
+                        <Row>
+                            <Col flex='auto'></Col>
+                            <Col flex="auto">
+                                <Input size='large' value={text} onChange={(event) => setText(event.target.value)}></Input>
+                            </Col>
+                            <Col flex="auto">
+                                <Button size='large' type="primary" htmlType="submit">Submit</Button>
+                            </Col>
+                        </Row>
+                    </Form.Item>
+                </Form>
+            </div>
         </Flex>
         </>
     )

@@ -1,0 +1,10 @@
+.pinned-bottom  {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.max-height {
+    max-height: 93vh;
+    overflow-y: auto;
+}
